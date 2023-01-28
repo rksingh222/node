@@ -11,3 +11,6 @@ and also
 in browser click
 localhost:3000 
 in terminal you will see the log message
+
+near console.log(req)
+if we give process.exit(); it stops event loop 
