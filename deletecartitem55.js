@@ -110,6 +110,8 @@ npm install --save express-handlebars@3.0
             //added code
             exports.postDeleteProduct = (req,res,next)=>{
               const prodId = req.body.productId;
+              Product.deleteById(prodId);
+              res.redirect('/admin/products');
             }
 
            //controller/shop.js
@@ -211,6 +213,24 @@ npm install --save express-handlebars@3.0
                   })
                 }
               });
+                        
+               //added code
+               static deleteProduct(id, productPrice){
+                    fs.readFile(p,(err,fileContent) =>{
+                        if(err){
+                           return;
+                        }
+                        const updatedCart = {...JSON.parse(fileContent) };
+                        const product = updatedCart.products.find(prod =>prod.id === id);
+                        const productQty = product.qty;
+                        cart.products =  updatedCart.products.filter(prod => prod.id !== id);
+                        cart.totalPrice = cart.totalPrice- productPrice*productQty;
+                        
+                    }
+                    fs.writeFile(p, JSON.stringify(updatedCart),err => {
+                        console.log(err);
+                    });
+               }
 
               //add new product/increase quantity
             }
@@ -221,6 +241,8 @@ npm install --save express-handlebars@3.0
 
             const fs = require('fs');
             const path = require('path');
+            const Cart = require('./cart'); 
+          
             const p = path.join(path.dirname(process.mainModule.filename),'data','products.json');
 
             const getProductsFromFile = (cb)=>{
@@ -289,11 +311,13 @@ npm install --save express-handlebars@3.0
               //added code
               static deleteById(id){
                 getProductsFromFile(products => {
+                  const product = products.find(prod => prod.id === id);
                   const updatedProducts = products.filter(prod => prod.id !== id);
                   fs.writeFile(p, JSON.strigify(updateProducts), err=> {
                     if(!err){
                       // if no error 
                       // then remove from the cart also
+                      Cart.deleteProduct(id, product.price);
                     }
                   }
                 });
