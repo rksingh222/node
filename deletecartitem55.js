@@ -1,3 +1,7 @@
+//as we are deleting the product we have also delete the item from cart because that product does not exist any more so how can it be placed in the cart 
+//when that product is not available
+
+
 npm install --save express-handlebars@3.0
 
             EJS.  <p> <% name=%></p>
