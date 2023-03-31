@@ -18,7 +18,7 @@
               const imageUrl = req.body.imageUrl;
               const price = req.body.price;
               const description = req.body.description;
-              Product.create({title: title, price: price, imageUrl: imageUrl, description:description}).then(result =>{console.log(result}).catch(err=>{
+              Product.create({title: title, price: price, imageUrl: imageUrl, description:description}).then(result =>{console.log('created product');}).catch(err=>{
               console.log(err);
               });
                
