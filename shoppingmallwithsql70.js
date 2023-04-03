@@ -5,6 +5,8 @@ npm install --save mysql2
 // use phpmyadmin and name it phpad in the mamp server inside htdocs after downloading from phpadmin site
 //open it withe localhost:8888/phpad afte installing map server
 //create a database 
+// with node-complete database name
+// create table products id, title, description, imageUrl , title
 
 //models/product.js
 
