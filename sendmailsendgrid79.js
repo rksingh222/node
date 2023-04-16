@@ -9,7 +9,7 @@ Settings
 Api key give name node _name
 
 Create and view token
-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
+
 
 
 Create sender
@@ -22,7 +22,7 @@ const nodemailer = require('nodemailer');
 const sendgridTransport = require('nodemailer-sendgrid-transport');
 const transporter = nodemailer.createTransport(sendgridTransport({
     auth: {
-        api_key: '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'
+        api_key: place the api key with single codes
     }
 }))
 
