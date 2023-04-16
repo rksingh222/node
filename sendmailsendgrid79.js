@@ -1,7 +1,6 @@
 sendgrid.com (free start)
 sendgrid email and password
-Username : Rahulaliasjake22@gmail.com
-Password:  Rahulsingh19851985
+
 
 Follow the process
 
