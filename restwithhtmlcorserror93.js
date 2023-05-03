@@ -33,3 +33,48 @@ app.use((req, res, next) => {
 })
 
 after setting headers and calling the previous html code we will get the server response without CORS error
+
+
+on posting 
+
+html code
+<button id="get">get post</button>
+<button id="post">create a post</button>
+
+javascript code
+const getButton = document.getElementById('get');
+
+const postButton = document.getElementById('post');
+
+getButton.addEventListener('click',()=>{
+  fetch('http://localhost:8080/feed/posts').then(res => res.json()).then(resData => console.log(resData)).catch(err => console.log(err))
+})
+
+postButton.addEventListener('click', ()=>{
+  fetch('http://localhost:8080/feed/post',{
+    method: 'POST',
+    body: JSON.stringify({
+      title: 'A codepen post',
+      content: 'Created via codepen'
+    }),
+    headers: {
+      'Content-Type': 'application/json'
+    }
+  }).then(res => res.json()).then(resData => console.log(resData)).catch(err => console.log(err))
+})
+
+
+here you should convert the data in JSON type while sending in the body and should have the set the header set as content type : application/json
+
+also the header should be put this way in the server side code to be sent to the rest api for server side
+'Access-Control-Allow-Headers','Content-Type, Authorization'
+
+app.use((req, res, next) => {
+    res.setHeader('Access-Control-Allow-Origin', '*');
+    res.setHeader('Access-Control-Allow-Methods','GET, POST, PUT, PATCH, DELETE');
+    res.setHeader('Access-Control-Allow-Headers','Content-Type, Authorization');
+    next();
+})
+
+
+
